@@ -13,13 +13,6 @@ function start() {
 
 start();
 
-let expCurrMonth = prompt('Введите обязательную статью расходов в этом месяце');
-let howMuch = prompt('Во сколько обойдется?');
-let expCurrMonth2 = prompt(
-  'Введите обязательную статью расходов в этом месяце'
-);
-let howMuch2 = prompt('Во сколько обойдется?');
-
 const appData = {
   budget: money,
   timeData: time,
@@ -130,7 +123,7 @@ function checkSavings() {
   }
 }
 
-// checkSavings();
+checkSavings();
 
 function chooseOptExpenses() {
   for (let i = 0; i < 3; i++) {
