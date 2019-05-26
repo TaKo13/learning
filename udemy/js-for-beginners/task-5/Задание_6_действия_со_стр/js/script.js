@@ -17,7 +17,6 @@ title.innerText = 'Мы продаем только подлинную техн�
 
 let columnSecond = document.body.getElementsByClassName('column')[1];
 let blockAdv = document.getElementsByClassName('adv')[0];
-
 columnSecond.removeChild(blockAdv);
 
 let questionToUser = prompt('Как вы относитесь к технике Apple?');
