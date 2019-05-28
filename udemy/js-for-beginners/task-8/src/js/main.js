@@ -67,6 +67,14 @@ btnExpenses.addEventListener('click', function() {
   expensesValue.textContent = sum;
 });
 
+btnOptionalExp.addEventListener('click', function() {
+  for (let i = 0; i < inputOptionalExpItem.length; i++) {
+    let opt = inputOptionalExpItem[i].value;
+    appData.optionalExpenses[i] = opt;
+    optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
+  }
+});
+
 const appData = {
   budget: money,
   timeData: time,
@@ -99,15 +107,7 @@ const appData = {
       alert('Доход в месяц с вашего демозита: ' + appData.monthIncome);
     }
   },
-  chooseOptExpenses: function() {
-    for (let i = 0; i < 3; i++) {
-      let c = prompt('Статья необязательных расходов?');
-
-      appData.optionalExpenses[i + 1] = c;
-      console.log(appData.optionalExpenses);
-    }
-    return;
-  },
+  chooseOptExpenses: function() {},
   chooseIncome: function() {
     let items = prompt(
       'Что принесет дополнитеьный доход? (Перечислите через запятую)'
