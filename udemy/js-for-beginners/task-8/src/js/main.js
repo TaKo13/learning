@@ -94,52 +94,51 @@ btnCountBudget.addEventListener('click', function() {
   }
 });
 
+inputChooseIncome.addEventListener('input', function() {
+  let items = inputChooseIncome.value;
+  appData.income = items.split(', ');
+  incomeValue.textContent = appData.income;
+});
+
+checkbSavings.addEventListener('click', function() {
+  if (appData.savings == true) {
+    appData.savings = false;
+  } else {
+    appData.savings = true;
+  }
+});
+
+inputChooseSum.addEventListener('input', function() {
+  if (appData.savings == true) {
+    let sum = +inputChooseSum.value,
+      percent = +inputChoosePercent.value;
+
+    appData.monthIncome = (sum / 100 / 12) * percent;
+    appData.yearIncome = (sum / 100) * percent;
+
+    monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+  }
+});
+
+inputChoosePercent.addEventListener('input', function() {
+  if (appData.savings == true) {
+    let sum = +inputChooseSum.value,
+      percent = +inputChoosePercent.value;
+
+    appData.monthIncome = (sum / 100 / 12) * percent;
+    appData.yearIncome = (sum / 100) * percent;
+
+    monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+  }
+});
+
 const appData = {
   budget: money,
   timeData: time,
   expenses: {},
   optionalExpenses: {},
   income: [],
-  savings: true,
-  chooseExpenses: function() {},
-  detectDayBudget: function() {
-    alert('Бюджет на 1 день составляет: ' + appData.moneyPerDay + 'руб.');
-  },
-  detectLevel: function() {},
-  checkSavings: function() {
-    if (appData.savings == true) {
-      let save = +prompt('Какова сумма накоплений?');
-      let percent = +prompt('Под какой процент?');
-
-      appData.monthIncome = (save / 100 / 12) * percent;
-      alert('Доход в месяц с вашего демозита: ' + appData.monthIncome);
-    }
-  },
-  chooseOptExpenses: function() {},
-  chooseIncome: function() {
-    let items = prompt(
-      'Что принесет дополнитеьный доход? (Перечислите через запятую)'
-    );
-    while (!isNaN(items) || items == '' || items == null) {
-      items = prompt(
-        'Что принесет дополнитеьный доход? (Перечислите через запятую)'
-      );
-    }
-
-    appData.income = items.split(', ');
-    appData.income.push(prompt('Может что-то еще?'));
-    appData.income.sort();
-
-    appData.income.forEach((item, i) => {
-      console.log('Способы доп. заработка: ' + (i + 1) + ' ' + item);
-    });
-  }
+  savings: false
 };
-
-let key;
-
-for (key in appData) {
-  console.log(
-    'Наша программа включает в себя данные:' + key + ' - ' + appData[key]
-  );
-}
