@@ -111,8 +111,34 @@ button:hover {
   line-height: normal;
 }
 
-
 .photo-pets {
-  max-height: 670px;
-  width: auto;
+  display: inline-block;
+  text-align: center;
 }
+
+.block-with-comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 122px;
+}
+
+.photo-author {
+  width: 64px;
+  height: 64px;
+  padding: 0 24px 0 0 ;
+}
+
+.comment-text {
+  font-style: italic;
+  font-size: 17px;
+  line-height: 27px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.name-author {
+  display: inline-block;
+  padding: 16px 0 0 0 ;
+  color: rgba(255, 255, 255, 0.6);
+}
+
