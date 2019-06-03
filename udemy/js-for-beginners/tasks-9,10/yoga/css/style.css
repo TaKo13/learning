@@ -282,6 +282,7 @@ header ul li:before {
   margin-top: 40px;
   font-size: 90px;
   color: #c78030;
+  visibility: hidden;
 }
 .content .timer-numbers:after {
   content: '';
