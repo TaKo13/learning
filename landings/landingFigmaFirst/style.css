@@ -116,9 +116,11 @@ button:hover {
 
 .photo-pets {
   display: inline-block;
-  text-align: center;
+  max-width: 100%;
+  object-fit: contain;
+  /* height: auto; */
+  /* text-align: center; */
 }
-
 .block-with-comment {
   display: flex;
   align-items: center;
