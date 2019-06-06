@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // Timer
 
-  const deadline = '2019-06-04';
+  const deadline = '2019-06-07';
 
   //определяет остаток времени
   function getTimeRemaining(endtime) {
@@ -81,4 +81,22 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 
   setClock('timer', deadline);
+
+  // Modal window (+ add ESC?)
+
+  let more = document.querySelector('.more'),
+    overay = document.querySelector('.overlay'),
+    close = document.querySelector('.popup-close');
+
+  more.addEventListener('click', function() {
+    overay.style.display = 'block';
+    this.classList.add('more-splash');
+    document.body.style.overflow = 'hidden';
+  });
+
+  close.addEventListener('click', function() {
+    overay.style.display = 'none';
+    more.classList.remove('more-splash');
+    document.body.style.overflow = '';
+  });
 });
