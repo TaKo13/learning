@@ -1,5 +1,5 @@
 :root {
-  --color-for-button-first: rgba(62, 34, 3, 0.82);
+  --color-for-button-hover: rgba(62, 34, 3, 0.82);
   --color-for-button-second: rgba(253, 180, 97, 0.82);
   --color-for-linkText:  rgba(253, 180, 97, 0.82);
 }
@@ -8,7 +8,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: url(./assets/images/first-bg.jpg) center 0 no-repeat, url(./assets/images/second-bg.jpg) center 2174px no-repeat;
+  background: url(./assets/images/first-bg.jpg) center 0/ 1440px 2175px no-repeat, url(./assets/images/second-bg.jpg) center 2500px/ 1440px 2160px no-repeat;
+  background-color: #000;
 }
 
 a {
@@ -37,15 +38,24 @@ a {
   padding-right: 92px;
 }
 
-.general-style {
+.general-style-for-discript {
   width: 713px;
   height: 475px;
-  margin: 304px 0 0 173px;
   font-style: normal;
   font-weight: bold;
   font-size: 72px;
   line-height: 86px;
 }
+
+.discription-head {
+  margin: 304px 0 0 173px;
+}
+
+.discription-foo {
+  margin-top: 400px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
 
 .header {
   font-weight: bold;
@@ -59,7 +69,7 @@ a {
   line-height: 1.2;  
 }
 
-button {
+.button {
   height: 51px;
   width: 150px;
   border-radius: 8px;
@@ -68,15 +78,29 @@ button {
   line-height: normal;
   text-align: center;
   cursor: pointer;
-  color: var(--color-for-button-first);
-  border: 2px solid var(--color-for-button-first);
+  background: transparent;
+  color: var(--color-for-button-hover);
+  border: 2px solid var(--color-for-button-hover);
   transition: all .5s ease-out;
 }
+.button.dark{
+  border-color: var(--color-for-button-second);
+  color: var(--color-for-button-second);
+}
 
-button:hover {
+.button:hover {
   border: 2px solid var(--color-for-button-second);
   background: var(--color-for-button-second);
-  transition: all .5s ease-out;
+  color: var(--color-for-button-hover);
+}
+
+.foo-CR {
+  display: inline-block;
+  margin-top: 220px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .block-discription {
