@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  info.addEventListener('click', function(event) {
+  info.addEventListener('click', event => {
     const target = event.target;
     if (target && target.classList.contains('info-header-tab')) {
       for (let i = 0; i < tab.length; i++) {
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // Timer
 
-  const deadline = '2019-06-07';
+  const deadline = '2019-06-11';
 
   //определяет остаток времени
   function getTimeRemaining(endtime) {
@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', function() {
       seconds = timer.querySelector('.seconds'),
       timeInterval = setInterval(updateClock, 1000);
 
-    setTimeout(function() {
+    setTimeout(() => {
       timer.style.visibility = 'visible';
     }, 1000);
 
@@ -88,13 +88,13 @@ window.addEventListener('DOMContentLoaded', function() {
     overay = document.querySelector('.overlay'),
     close = document.querySelector('.popup-close');
 
-  more.addEventListener('click', function() {
+  more.addEventListener('click', () => {
     overay.style.display = 'block';
     this.classList.add('more-splash');
     document.body.style.overflow = 'hidden';
   });
 
-  close.addEventListener('click', function() {
+  close.addEventListener('click', () => {
     overay.style.display = 'none';
     more.classList.remove('more-splash');
     document.body.style.overflow = '';
