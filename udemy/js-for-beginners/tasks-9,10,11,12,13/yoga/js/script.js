@@ -99,4 +99,23 @@ window.addEventListener('DOMContentLoaded', function() {
     more.classList.remove('more-splash');
     document.body.style.overflow = '';
   });
+
+  // Form
+
+  let message = {
+    loaging: 'Загрузка...',
+    success: 'Спасибо! Скоро мы с вами свяжемся!',
+    failure: 'Что-то пошло не так...'
+  };
+
+  let form = document.querySelector('.main-form');
+  let input = form.getElementsByTagName('input');
+  let statusMessage = document.createElement('div');
+
+  statusMessage.classList.add('status');
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    form.appendChild(statusMessage);
+  });
 });
