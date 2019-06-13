@@ -1,12 +1,17 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var cors = require('cors');
 var app = express();
 
-app.get('/', function(req, res) {
-  res.send('Hello World!');
-});
+app.use(cors());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/tanya', function(req, res) {
-  res.send('Hello Tanya!');
+// parse application/json
+app.use(bodyParser.json());
+
+app.post('/form', (req, res) => {
+  setTimeout(() => res.sendStatus(200), 2000);
 });
 
 app.listen(3000, function() {

@@ -90,8 +90,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
   more.addEventListener('click', () => {
     overay.style.display = 'block';
-    this.classList.add('more-splash');
-    document.body.style.overflow = 'hidden';
+    more.classList.add('more-splash');
+    document.body.style.overflow = '';
   });
 
   close.addEventListener('click', () => {
@@ -117,5 +117,25 @@ window.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', event => {
     event.preventDefault();
     form.appendChild(statusMessage);
+
+    let request = new XMLHttpRequest();
+    request.open('POST', 'http://localhost:3000/form');
+    request.setRequestHeader(
+      'Content-type',
+      'application/x-www-form-urlencoded'
+    );
+
+    let formData = new FormData(form);
+    request.send(formData);
+
+    request.addEventListener('readystatechange', () => {
+      if (request.readyState < 4) {
+        statusMessage.innerHTML = message.loaging;
+      } else if (request.readyState === 4 && request.status == 200) {
+        statusMessage.innerHTML = message.success;
+      } else {
+        statusMessage.innerHTML = message.failure;
+      }
+    });
   });
 });
