@@ -111,6 +111,8 @@ window.addEventListener('DOMContentLoaded', function() {
   let form = document.querySelector('.main-form');
   let input = form.getElementsByTagName('input');
   let statusMessage = document.createElement('div');
+  statusMessage.style.height = '30px';
+  statusMessage.style.width = '365px';
 
   statusMessage.classList.add('status');
 
@@ -120,22 +122,38 @@ window.addEventListener('DOMContentLoaded', function() {
 
     let request = new XMLHttpRequest();
     request.open('POST', 'http://localhost:3000/form');
-    request.setRequestHeader(
-      'Content-type',
-      'application/x-www-form-urlencoded'
-    );
+    request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    // request.setRequestHeader(
+    //   'Content-type',
+    //   'application/x-www-form-urlencoded'
+    // ); пример отправки формы
 
     let formData = new FormData(form);
-    request.send(formData);
+
+    let obj = {};
+
+    formData.forEach((key, value) => {
+      obj[key] = value;
+    });
+
+    let json = JSON.stringify(obj);
+    request.send(json);
 
     request.addEventListener('readystatechange', () => {
       if (request.readyState < 4) {
         statusMessage.innerHTML = message.loaging;
+        statusMessage.style.background = 'blue';
       } else if (request.readyState === 4 && request.status == 200) {
         statusMessage.innerHTML = message.success;
+        statusMessage.style.background = 'green';
       } else {
         statusMessage.innerHTML = message.failure;
+        statusMessage.style.background = 'red';
       }
     });
+
+    for (let i = 0; i < input.length; i++) {
+      input[i].value = '';
+    }
   });
 });
