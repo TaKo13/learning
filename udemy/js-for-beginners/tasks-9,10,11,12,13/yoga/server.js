@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/form', (req, res) => {
-  setTimeout(() => res.sendStatus(200), 1000);
+  setTimeout(() => res.json(req.body), 1000);
 });
 
 app.listen(3000, function() {

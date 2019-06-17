@@ -119,38 +119,103 @@ window.addEventListener('DOMContentLoaded', function() {
   form.addEventListener('submit', event => {
     event.preventDefault();
     form.appendChild(statusMessage);
+    const formData = new FormData(form);
+    // const obj = {};
 
-    let request = new XMLHttpRequest();
-    request.open('POST', 'http://localhost:3000/form');
-    request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-    // request.setRequestHeader(
-    //   'Content-type',
-    //   'application/x-www-form-urlencoded'
-    // ); пример отправки формы
+    // formData.forEach((key, value) => {
+    //   obj[key] = value;
+    // });
+    // const json = JSON.stringify(obj);
+    // let request = new XMLHttpRequest();
+    // request.open('POST', 'http://localhost:3000/form');
+    // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    // // request.setRequestHeader(
+    // //   'Content-type',
+    // //   'application/x-www-form-urlencoded'
+    // // ); пример отправки формы
 
-    let formData = new FormData(form);
+    // request.send(json);
 
-    let obj = {};
+    // request.addEventListener('readystatechange', () => {
+    //   if (request.readyState < 4) {
+    //     statusMessage.innerHTML = message.loaging;
+    //     statusMessage.style.background = 'blue';
+    //   } else if (request.readyState === 4 && request.status == 200) {
+    //     statusMessage.innerHTML = message.success;
+    //     statusMessage.style.background = 'green';
+    //   } else {
+    //     statusMessage.innerHTML = message.failure;
+    //     statusMessage.style.background = 'red';
+    //   }
+    // });
 
-    formData.forEach((key, value) => {
-      obj[key] = value;
-    });
+    /************** fetch *************/
+    // statusMessage.innerHTML = message.loaging;
+    // statusMessage.style.background = 'blue';
 
-    let json = JSON.stringify(obj);
-    request.send(json);
+    // fetch('http://localhost:3000/form', {
+    //   method: 'post',
+    //   headers: {
+    //     'content-type': 'application/json; charset=utf-8'
+    //   },
+    //   body: json
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     statusMessage.innerHTML = message.success;
+    //     statusMessage.style.background = 'green';
+    //     console.log(data);
+    //   })
+    //   .catch(err => {
+    //     statusMessage.innerHTML = message.failure;
+    //     statusMessage.style.background = 'red';
+    //     console.error(err);
+    //   });
+    /************** fetch *************/
 
-    request.addEventListener('readystatechange', () => {
-      if (request.readyState < 4) {
-        statusMessage.innerHTML = message.loaging;
-        statusMessage.style.background = 'blue';
-      } else if (request.readyState === 4 && request.status == 200) {
+    /********** Promise *******/
+    const sendFromInJson = formData => {
+      const obj = {};
+
+      formData.forEach((key, value) => {
+        obj[key] = value;
+      });
+      const json = JSON.stringify(obj);
+
+      return new Promise((resolve, reject) => {
+        let request = new XMLHttpRequest();
+
+        request.open('POST', 'http://localhost:3000/form');
+        request.setRequestHeader(
+          'Content-type',
+          'application/json; charset=utf-8'
+        );
+        request.send(json);
+
+        request.addEventListener('readystatechange', () => {
+          if (request.status == 200) {
+            resolve();
+          } else {
+            reject();
+          }
+        });
+      });
+    };
+
+    statusMessage.innerHTML = message.loaging;
+    statusMessage.style.background = 'blue';
+    sendFromInJson(formData)
+      .then(ar => {
         statusMessage.innerHTML = message.success;
         statusMessage.style.background = 'green';
-      } else {
+        console.log();
+      })
+      .catch(err => {
         statusMessage.innerHTML = message.failure;
         statusMessage.style.background = 'red';
-      }
-    });
+        console.error(err);
+      });
+    /********** Promise *******/
 
     for (let i = 0; i < input.length; i++) {
       input[i].value = '';
