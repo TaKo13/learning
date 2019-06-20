@@ -225,4 +225,18 @@ window.addEventListener('DOMContentLoaded', function() {
   //  Slider
 
   let slideIndex = 1;
+  let slides = document.querySelectorAll('.slider-item');
+  let prev = document.querySelector('.prev');
+  let next = document.querySelector('.next');
+  let dotWrap = document.querySelector('.slider-dots');
+  let dots = document.querySelectorAll('.dot');
+
+  showSlides(slideIndex);
+  function showSlides(index) {
+    slides.forEach(item => (item.style.display = 'none'));
+    dots.forEach(item => item.classList.remove('dot-active'));
+
+    slides[slideIndex - 1].style.display = 'block';
+    dots[slideIndex - 1].classList.add('dot-active');
+  }
 });
