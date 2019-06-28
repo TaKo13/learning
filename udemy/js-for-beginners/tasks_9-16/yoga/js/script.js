@@ -262,6 +262,8 @@ window.addEventListener('DOMContentLoaded', function() {
     plusSlides(1);
   });
 
+  setInterval(() => plusSlides(1), 3000);
+
   dotsWrap.addEventListener('click', function(event) {
     for (let i = 0; i < dots.length + 1; i++) {
       if (
