@@ -32,4 +32,4 @@ function tabs() {
   });
 }
 
-module.export = tabs;
+module.exports = tabs;
