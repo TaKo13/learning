@@ -43,6 +43,9 @@ export default class App extends Component {
     });
   };
 
+  onToggleImpotrant = id => {};
+  onToggleDone = id => {};
+
   render() {
     return (
       <div class="todo-app">
@@ -52,7 +55,12 @@ export default class App extends Component {
           <ItemStatusFilter />
         </div>
 
-        <ToDoList todos={this.state.todoData} onDeleted={this.deleteItem} />
+        <ToDoList
+          todos={this.state.todoData}
+          onDeleted={this.deleteItem}
+          onToggleDone={this.onToggleDone}
+          onToggleImpotrant={this.onToggleImpotrant}
+        />
 
         <ItemAddForm onItemAdded={this.addItem} />
       </div>
