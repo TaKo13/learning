@@ -11,40 +11,48 @@ export default class App extends Component {
   nextID = 100;
   state = {
     todoData: [
-      { label: 'Drink coffee', important: false, id: 1 },
-      { label: 'Make Awesom App', important: true, id: 2 },
-      { label: 'Have a lunch', important: false, id: 3 }
-    ]
+      this.createToDoItem('Drink coffee'),
+      this.createToDoItem('Make Awesom App'),
+      this.createToDoItem('Have a lunch'),
+    ],
   };
 
-  deleteItem = id => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex(el => el.id === id);
-      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
-
-      return {
-        todoData: newArray
-      };
-    });
-  };
-
-  addItem = text => {
-    const newItem = {
-      label: text,
+  createToDoItem(label) {
+    return {
+      label,
       important: false,
-      id: this.nextID++
+      done: false,
+      id: this.nextID++,
     };
 
-    this.setState(({ todoData }) => {
-      const newArr = [...todoData, newItem];
-      return {
-        todoData: newArr
-      };
-    });
-  };
+    deleteItem = (id) => {
+      this.setState(({ todoData }) => {
+        const idx = todoData.findIndex((el) => el.id === id);
+        const newArray = [
+          ...todoData.slice(0, idx),
+          ...todoData.slice(idx + 1),
+        ];
 
-  onToggleImpotrant = id => {};
-  onToggleDone = id => {};
+        return {
+          todoData: newArray,
+        };
+      });
+    };
+
+    addItem = (text) => {
+      const newItem = this.createToDoItem(text);
+
+      this.setState(({ todoData }) => {
+        const newArr = [...todoData, newItem];
+        return {
+          todoData: newArr,
+        };
+      });
+    };
+
+    onToggleImpotrant = (id) => {};
+    onToggleDone = (id) => {};
+  }
 
   render() {
     return (
