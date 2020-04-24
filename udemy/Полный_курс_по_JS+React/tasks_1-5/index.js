@@ -72,3 +72,15 @@ function checkSavings() {
   }
 }
 checkSavings();
+
+function chooseOptExpenses() {
+  for (let i = 0; i < 3; i++) {
+    let optExpenses = prompt('Статья необязательных расходов?', '');
+
+    appData.optionalExpenses[i + 1] = optExpenses;
+    console.log(appData.optionalExpenses);
+  }
+  return;
+}
+
+chooseOptExpenses();
